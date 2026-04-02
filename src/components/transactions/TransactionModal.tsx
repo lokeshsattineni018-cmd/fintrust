@@ -81,12 +81,12 @@ export function TransactionModal({ onClose, editingTransaction, transaction }: M
           <div className="w-10 h-1.5 bg-zinc-300/80 dark:bg-zinc-700/80 rounded-full" />
         </div>
 
-        <div className="flex items-center gap-3 p-6 pb-2 relative z-10">
+        <div className="flex items-center gap-3 p-6 pb-2 relative z-10 border-b border-zinc-100 dark:border-zinc-800/50">
           <div className="w-9 h-9 bg-zinc-900 dark:bg-white rounded-xl flex items-center justify-center text-white dark:text-zinc-900 shadow-xl shadow-zinc-900/20">
              <ArrowUpRight size={22} strokeWidth={3} />
           </div>
           <h2 className="text-xl font-headline font-bold text-zinc-900 dark:text-white tracking-tight">
-            {isEditing ? 'Modify record' : 'Protocol input'}
+            {isEditing ? 'Edit Transaction' : 'Add Transaction'}
           </h2>
           <motion.button
             type="button"
@@ -98,37 +98,37 @@ export function TransactionModal({ onClose, editingTransaction, transaction }: M
           </motion.button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 pt-4 space-y-8">
-          <div className="flex rounded-2xl p-1 w-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 shadow-inner">
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <div className="flex rounded-xl p-1 w-full bg-zinc-100 dark:bg-zinc-900">
             <button
               type="button"
               onClick={() => setFormData({ ...formData, type: 'expense' })}
-              className={`flex-1 py-3 text-xs font-bold uppercase tracking-widest rounded-xl transition-all ${
+              className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all ${
                 formData.type === 'expense' 
-                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 shadow-lg scale-[1.02]' 
-                  : 'text-zinc-400'
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm' 
+                  : 'text-zinc-500'
               }`}
             >
-              Debit
+              Expense
             </button>
             <button
               type="button"
               onClick={() => setFormData({ ...formData, type: 'income' })}
-              className={`flex-1 py-3 text-xs font-bold uppercase tracking-widest rounded-xl transition-all ${
+              className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all ${
                 formData.type === 'income' 
-                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 shadow-lg scale-[1.02]' 
-                  : 'text-zinc-400'
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm' 
+                  : 'text-zinc-500'
               }`}
             >
-              Credit
+              Income
             </button>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div>
-              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-2.5">Capital Amount</label>
-              <div className="relative group">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-600 text-xl font-bold">₹</span>
+              <label className="block text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase tracking-wider">Amount</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-bold">₹</span>
                 <input
                   type="number"
                   required
@@ -136,7 +136,7 @@ export function TransactionModal({ onClose, editingTransaction, transaction }: M
                   step="0.01"
                   value={formData.amount}
                   onChange={e => setFormData({ ...formData, amount: e.target.value })}
-                  className="w-full border-2 border-zinc-100 dark:border-zinc-800 focus:border-zinc-900 dark:focus:border-white/20 rounded-2xl pl-10 pr-4 py-4 text-zinc-900 dark:text-white font-display font-bold text-3xl focus:outline-none bg-white dark:bg-zinc-950 transition-all placeholder:text-zinc-200 dark:placeholder:text-zinc-800"
+                  className="w-full border border-zinc-200 dark:border-zinc-800 rounded-xl pl-10 pr-4 py-3.5 text-zinc-900 dark:text-white font-semibold focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 bg-white dark:bg-zinc-950 transition-all font-numeric text-lg"
                   placeholder="0.00"
                 />
               </div>
@@ -144,24 +144,24 @@ export function TransactionModal({ onClose, editingTransaction, transaction }: M
 
             <div className="space-y-4">
               <div>
-                <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-2.5">Description</label>
+                <label className="block text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase tracking-wider">Description</label>
                 <input
                   type="text"
                   required
                   value={formData.description}
                   onChange={e => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3.5 text-sm font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-4 focus:ring-zinc-900/5 dark:focus:ring-white/5 bg-white dark:bg-zinc-950 transition-all"
-                  placeholder="Memo..."
+                  className="w-full border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium text-zinc-900 dark:text-white focus:outline-none bg-white dark:bg-zinc-950 transition-all"
+                  placeholder="Transaction details"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-2.5">Sector</label>
+                  <label className="block text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase tracking-wider">Category</label>
                   <select
                     value={formData.category}
                     onChange={e => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3.5 text-sm font-bold text-zinc-700 dark:text-zinc-300 focus:outline-none bg-white dark:bg-zinc-950 cursor-pointer appearance-none"
+                    className="w-full border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-semibold text-zinc-900 dark:text-white focus:outline-none bg-white dark:bg-zinc-950 cursor-pointer appearance-none"
                   >
                     <option value="Food">Food</option>
                     <option value="Travel">Travel</option>
@@ -173,34 +173,33 @@ export function TransactionModal({ onClose, editingTransaction, transaction }: M
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-2.5">Timestamp</label>
+                  <label className="block text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase tracking-wider">Date</label>
                   <input
                     type="date"
                     required
                     value={formData.date}
                     onChange={e => setFormData({ ...formData, date: e.target.value })}
-                    className="w-full border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3.5 text-sm font-bold text-zinc-700 dark:text-zinc-300 focus:outline-none bg-white dark:bg-zinc-950"
+                    className="w-full border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-semibold text-zinc-900 dark:text-white focus:outline-none bg-white dark:bg-zinc-950"
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="pt-4 flex flex-col gap-3">
+          <div className="pt-4 space-y-3">
             <motion.button
               type="submit"
-              whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full rounded-2xl bg-zinc-900 dark:bg-white py-4.5 font-display text-sm font-bold text-white dark:text-zinc-900 shadow-2xl shadow-zinc-900/20 dark:shadow-white/5 transition-all border border-zinc-950 dark:border-zinc-200"
+              className="w-full rounded-xl bg-zinc-900 dark:bg-white py-4 font-bold text-white dark:text-zinc-900 shadow-lg transition-all"
             >
-              {isEditing ? 'COMMIT CHANGES' : 'AUTHORIZE ENTRY'}
+              {isEditing ? 'Save Changes' : 'Add Transaction'}
             </motion.button>
             <button
               type="button"
               onClick={onClose}
-              className="w-full py-3 text-[11px] font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+              className="w-full py-2 text-sm font-semibold text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
             >
-              Cancel protocol
+              Cancel
             </button>
           </div>
         </form>
