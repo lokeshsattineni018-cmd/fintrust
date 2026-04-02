@@ -13,7 +13,7 @@ export function BottomNav() {
   const { activePage, setActivePage } = useDashboard();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-[76px] items-start justify-around border-t border-zinc-200/80 bg-white/85 px-2 pt-2 backdrop-blur-2xl pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_40px_-12px_rgba(0,0,0,0.12)] md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-[76px] items-start justify-around border-t border-zinc-200/80 dark:border-zinc-800 bg-white/85 dark:bg-[#0a0a0a]/90 px-2 pt-2 backdrop-blur-2xl pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_40px_-12px_rgba(0,0,0,0.12)] md:hidden">
       {navItems.map(({ page, icon: Icon, label }) => {
         const isActive = activePage === page;
         return (

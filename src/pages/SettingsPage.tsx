@@ -32,8 +32,8 @@ export function SettingsPage() {
            </div>
            <div className="space-y-2">
              <p className="text-[11px] font-bold text-zinc-400 uppercase tracking-[0.2em] leading-none mb-4">Primary Account</p>
-             <h2 className="text-4xl text-zinc-900 dark:text-white tracking-tighter leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 400 }}>Alex Sattineni</h2>
-             <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-2 tracking-wide" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 300 }}>alex@fintrust.io</p>
+             <h2 className="text-4xl text-zinc-900 dark:text-white tracking-tighter leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 400 }}>Lokesh Sattineni</h2>
+             <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-2 tracking-wide" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 300 }}>lokesh@fintrust.io</p>
            </div>
         </motion.div>
 

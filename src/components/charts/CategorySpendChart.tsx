@@ -6,8 +6,12 @@ import { motion } from 'framer-motion';
 const COLORS = ['#6366f1', '#10b981', '#f43f5e', '#f59e0b', '#8b5cf6'];
 
 export function CategorySpendChart() {
-  const { transactions } = useDashboard();
+  const { transactions, darkMode } = useDashboard();
   const data = getCategorySpend(transactions);
+
+  const tooltipBg = darkMode ? 'rgba(26,26,26,0.95)' : 'rgba(255,255,255,0.95)';
+  const tooltipBorder = darkMode ? 'rgba(255,255,255,0.1)' : '#E2E8F0';
+  const tooltipText = darkMode ? '#fafafa' : '#0F172A';
 
   return (
     <motion.div
@@ -18,7 +22,7 @@ export function CategorySpendChart() {
       className="glass-card rounded-xl p-6 w-full h-full flex flex-col relative overflow-hidden"
     >
       <div className="flex justify-between items-center mb-6">
-        <h3 className="font-semibold text-zinc-900 font-headline">Spending by category</h3>
+        <h3 className="font-semibold text-zinc-900 dark:text-white font-headline">Spending by category</h3>
         <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wide">Top 5</span>
       </div>
 
@@ -26,41 +30,20 @@ export function CategorySpendChart() {
         <div className="relative w-32 h-32 flex-shrink-0">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                innerRadius={45}
-                outerRadius={60}
-                paddingAngle={3}
-                stroke="transparent"
-                dataKey="value"
-                strokeWidth={0}
-              >
+              <Pie data={data} cx="50%" cy="50%" innerRadius={45} outerRadius={60} paddingAngle={3} stroke="transparent" dataKey="value" strokeWidth={0}>
                 {data.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
               <Tooltip
-                contentStyle={{
-                  backgroundColor: 'rgba(255,255,255,0.95)',
-                  backdropFilter: 'blur(12px)',
-                  border: '1px solid #E2E8F0',
-                  borderRadius: '12px',
-                  boxShadow: '0 8px 24px rgba(99, 102, 241, 0.12)',
-                  padding: '8px 12px',
-                }}
-                itemStyle={{
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  color: '#0F172A',
-                }}
+                contentStyle={{ backgroundColor: tooltipBg, backdropFilter: 'blur(12px)', border: `1px solid ${tooltipBorder}`, borderRadius: '12px', boxShadow: '0 8px 24px rgba(99, 102, 241, 0.12)', padding: '8px 12px' }}
+                itemStyle={{ fontSize: '13px', fontWeight: 600, color: tooltipText }}
                 formatter={(value) => `₹${Number(value ?? 0).toLocaleString()}`}
               />
             </PieChart>
           </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total</span>
+            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Total</span>
           </div>
         </div>
 
@@ -78,19 +61,19 @@ export function CategorySpendChart() {
                       className="w-2.5 h-2.5 rounded-full shadow-sm flex-shrink-0"
                       style={{ backgroundColor: COLORS[index % COLORS.length] }}
                     />
-                    <span className="text-slate-600 font-semibold text-[13px] truncate">{item.name}</span>
+                    <span className="text-zinc-600 dark:text-zinc-300 font-semibold text-[13px] truncate">{item.name}</span>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
-                    <span className="text-[13px] font-bold text-slate-900">
+                    <span className="text-[13px] font-bold text-zinc-900 dark:text-white">
                       ₹{item.value.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded-md min-w-[2.5rem] text-center border border-slate-200/50">
+                    <span className="text-[10px] font-bold text-zinc-500 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded-md min-w-[2.5rem] text-center border border-zinc-200/50 dark:border-zinc-700">
                       {percentage}%
                     </span>
                   </div>
                 </div>
 
-                <div className="w-full h-1.5 bg-slate-100/80 rounded-full overflow-hidden flex-shrink-0">
+                <div className="w-full h-1.5 bg-zinc-100/80 dark:bg-zinc-800 rounded-full overflow-hidden flex-shrink-0">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${percentage}%` }}

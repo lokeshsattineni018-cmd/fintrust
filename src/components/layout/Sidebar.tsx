@@ -39,7 +39,7 @@ export function Sidebar() {
       )}
 
       <aside
-        className={`fixed left-0 top-0 z-50 flex h-[100dvh] w-[260px] flex-col border-r border-zinc-200/40 dark:border-zinc-800/40 bg-[rgba(245,245,247,0.7)] dark:bg-[rgba(10,10,10,0.8)] backdrop-blur-3xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${
+        className={`fixed left-0 top-0 z-50 flex h-[100dvh] w-[260px] flex-col border-r border-zinc-200/50 dark:border-zinc-800/50 bg-zinc-50/80 dark:bg-[#050505]/80 backdrop-blur-3xl transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
@@ -105,8 +105,8 @@ export function Sidebar() {
           
           <div className="mt-8 flex items-center justify-between px-4">
              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-zinc-200/60 dark:bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-zinc-600 dark:text-zinc-300">AS</div>
-                <p className="text-sm text-zinc-900 dark:text-white tracking-[-0.02em] truncate" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}>Alex Sattineni</p>
+                <div className="w-8 h-8 rounded-full bg-zinc-200/60 dark:bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-zinc-600 dark:text-zinc-300">LS</div>
+                <p className="text-sm text-zinc-900 dark:text-white tracking-[-0.02em] truncate" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}>Lokesh Sattineni</p>
              </div>
           </div>
         </div>

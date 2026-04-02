@@ -129,7 +129,7 @@ export function InsightsPanel() {
       viewport={viewportOnce}
       className="glass-premium space-y-5 rounded-2xl p-6"
     >
-      <h3 className="font-display flex items-center gap-2 text-lg font-semibold tracking-tight text-zinc-900">
+      <h3 className="font-display flex items-center gap-2 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">
         <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/15 to-teal-500/10 text-emerald-700 ring-1 ring-emerald-500/20">
           <Lightbulb size={18} strokeWidth={2} />
         </span>
@@ -141,7 +141,7 @@ export function InsightsPanel() {
           <motion.div
             key={i}
             variants={staggerItem}
-            className="flex items-start gap-3 rounded-xl border border-zinc-100/80 bg-gradient-to-br from-zinc-50/80 to-white p-4 shadow-sm"
+            className="flex items-start gap-3 rounded-xl border border-zinc-100/80 dark:border-zinc-800 bg-gradient-to-br from-zinc-50/80 to-white dark:from-zinc-800/50 dark:to-zinc-900 p-4 shadow-sm"
           >
             <div className={`w-9 h-9 rounded-xl ${card.iconBg} flex items-center justify-center flex-shrink-0`}>
               <card.icon size={18} className={card.iconColor} strokeWidth={2.5} />

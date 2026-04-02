@@ -206,13 +206,13 @@ export function TransactionsTable() {
                             <div className="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                               <button 
                                 onClick={() => setEditingTx(tx)} 
-                                className="p-2 text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 bg-white rounded-xl border border-zinc-200/50 shadow-sm transition-all"
+                                className="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 bg-white dark:bg-zinc-950 rounded-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-sm transition-all"
                               >
                                 <Pencil size={15} strokeWidth={2.5} />
                               </button>
                               <button 
                                 onClick={() => { if (window.confirm('Delete this entry?')) deleteTransaction(tx.id); }}
-                                className="p-2 text-zinc-400 hover:text-rose-600 hover:bg-rose-50 bg-white rounded-xl border border-zinc-200/50 shadow-sm transition-all"
+                                className="p-2 text-zinc-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10 bg-white dark:bg-zinc-950 rounded-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-sm transition-all"
                               >
                                 <Trash2 size={15} strokeWidth={2.5} />
                               </button>

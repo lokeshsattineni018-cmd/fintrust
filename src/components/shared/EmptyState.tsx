@@ -21,7 +21,7 @@ export function EmptyState({
     >
       <div className="relative group mb-8">
         <div className="absolute inset-0 bg-emerald-500/10 blur-2xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity" />
-        <div className="w-20 h-20 rounded-3xl bg-white border border-zinc-100 shadow-xl shadow-zinc-900/5 flex items-center justify-center relative z-10">
+        <div className="w-20 h-20 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 shadow-xl shadow-zinc-900/5 dark:shadow-black/20 flex items-center justify-center relative z-10">
           <Icon size={32} className="text-zinc-400" strokeWidth={1.5} />
         </div>
       </div>

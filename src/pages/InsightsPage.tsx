@@ -24,7 +24,7 @@ function ProgressRing({ value, max, size = 140, strokeWidth = 10, color = '#10b9
         <svg width={size} height={size} className="transform -rotate-90 relative z-10 transition-transform duration-700 group-hover:scale-105">
           <circle
             cx={size / 2} cy={size / 2} r={radius}
-            fill="none" stroke="#F1F5F9" strokeWidth={strokeWidth}
+            fill="none" stroke="currentColor" className="text-zinc-100 dark:text-zinc-800" strokeWidth={strokeWidth}
           />
           <motion.circle
             cx={size / 2} cy={size / 2} r={radius}

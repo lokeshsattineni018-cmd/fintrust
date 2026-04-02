@@ -4,7 +4,7 @@ import { BottomNav } from './BottomNav';
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-[100dvh] bg-[#f5f5f7]">
+    <div className="flex min-h-[100dvh]">
       <Sidebar />
       <div className="flex flex-1 flex-col lg:pl-[260px]">
         <Header />

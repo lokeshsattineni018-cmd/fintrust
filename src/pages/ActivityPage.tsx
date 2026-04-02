@@ -87,7 +87,7 @@ export function ActivityPage() {
           <motion.div
             key={stat.label}
             variants={staggerItem}
-            className="glass-card squircle-32 p-8 overflow-hidden group"
+            className="glass-card squircle-32 p-8 overflow-hidden group bg-white dark:bg-[#111111]"
           >
              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400 mb-2 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors">{stat.label}</p>
              <p className={`text-2xl font-bold font-numeric ${stat.valClass} tracking-tight font-display mb-1`}>{stat.value}</p>

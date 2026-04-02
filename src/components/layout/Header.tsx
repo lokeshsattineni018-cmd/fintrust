@@ -40,12 +40,12 @@ export function Header() {
 
   const avatar = (
     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 text-[10px] font-bold text-zinc-600 dark:text-zinc-300 transition-transform">
-      AS
+      LS
     </div>
   );
 
   return (
-    <header className="sticky top-0 z-40 bg-[rgba(245,245,247,0.7)] dark:bg-[rgba(10,10,10,0.8)] backdrop-blur-3xl backdrop-saturate-150 border-b border-zinc-200/40 dark:border-zinc-800/40 transition-colors">
+    <header className="sticky top-0 z-40 bg-zinc-50/80 dark:bg-[#050505]/80 backdrop-blur-3xl border-b border-zinc-200/50 dark:border-zinc-800/50 transition-colors">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12 py-4">
         <div className="flex lg:hidden items-center justify-between mb-4">
           <button onClick={() => setIsSidebarOpen(true)} className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white">
