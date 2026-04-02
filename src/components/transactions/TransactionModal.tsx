@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useDashboard } from '../../context/DashboardContext';
 import type { Transaction } from '../../data/mockData';
@@ -81,7 +81,10 @@ export function TransactionModal({ onClose, editingTransaction, transaction }: M
           <div className="w-10 h-1.5 bg-zinc-300/80 dark:bg-zinc-700/80 rounded-full" />
         </div>
 
-        <div className="flex items-center justify-between p-6 pb-2 relative z-10">
+        <div className="flex items-center gap-3 p-6 pb-2 relative z-10">
+          <div className="w-9 h-9 bg-zinc-900 dark:bg-white rounded-xl flex items-center justify-center text-white dark:text-zinc-900 shadow-xl shadow-zinc-900/20">
+             <ArrowUpRight size={22} strokeWidth={3} />
+          </div>
           <h2 className="text-xl font-headline font-bold text-zinc-900 dark:text-white tracking-tight">
             {isEditing ? 'Modify record' : 'Protocol input'}
           </h2>
@@ -89,7 +92,7 @@ export function TransactionModal({ onClose, editingTransaction, transaction }: M
             type="button"
             whileTap={{ scale: 0.94 }}
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
+            className="ml-auto p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
           >
             <X size={20} strokeWidth={2.5} />
           </motion.button>

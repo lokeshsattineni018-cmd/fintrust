@@ -1,4 +1,4 @@
-import { Search, Bell, Menu, Moon, Sun } from 'lucide-react';
+import { Search, Bell, Menu, Moon, Sun, X } from 'lucide-react';
 import { useDashboard, type Page } from '../../context/DashboardContext';
 
 const pageTitles: Record<Page, string> = {
@@ -9,7 +9,7 @@ const pageTitles: Record<Page, string> = {
 };
 
 export function Header() {
-  const { role, setRole, setIsSidebarOpen, activePage, darkMode, setDarkMode } = useDashboard();
+  const { role, setRole, setIsSidebarOpen, activePage, darkMode, setDarkMode, searchQuery, setSearchQuery } = useDashboard();
 
   const roleToggle = (
     <div className="flex items-center gap-1 bg-zinc-100/50 dark:bg-zinc-800/50 backdrop-blur-3xl rounded-full p-1">
@@ -73,8 +73,18 @@ export function Header() {
             <input
               type="text"
               placeholder="Search..."
-              className="h-9 w-full rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-9 pr-4 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-500 transition-all focus:bg-white dark:focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 font-medium"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-9 w-full rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-9 pr-10 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-500 transition-all focus:bg-white dark:focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 font-medium"
             />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+              >
+                <X size={14} strokeWidth={2} />
+              </button>
+            )}
           </div>
 
           <div className="flex items-center justify-end gap-6 text-sm">

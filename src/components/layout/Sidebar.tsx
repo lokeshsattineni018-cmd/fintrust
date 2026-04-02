@@ -3,10 +3,10 @@ import {
   Receipt,
   Lightbulb,
   Settings,
-  Hexagon,
   LogOut,
   HelpCircle,
-  Plus
+  Plus,
+  ArrowUpRight
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useDashboard, type Page } from '../../context/DashboardContext';
@@ -44,10 +44,12 @@ export function Sidebar() {
         }`}
       >
         <div className="relative px-6 py-6 mt-2">
-          <div className="flex items-center gap-3.5 mt-2">
-             <Hexagon className="text-zinc-900 dark:text-white" size={24} strokeWidth={1.5} />
+          <div className="flex items-center gap-3 mt-2">
+            <div className="w-9 h-9 bg-zinc-900 dark:bg-white rounded-xl flex items-center justify-center text-white dark:text-zinc-900 shadow-xl shadow-zinc-900/20">
+               <ArrowUpRight size={22} strokeWidth={3} />
+            </div>
             <div className="min-w-0">
-              <p className="font-display text-[17px] font-bold tracking-tight text-zinc-900 dark:text-white">FinTrust</p>
+               <p className="font-display text-[20px] font-bold tracking-tight text-zinc-900 dark:text-white">FinTrust</p>
             </div>
           </div>
         </div>
