@@ -1,47 +1,68 @@
-# The Ledger — Finance Dashboard
+# FinTrust — Personal Finance Dashboard
 
-A modern personal finance dashboard built with React, TypeScript, and Vite. Track your income, expenses, and spending patterns with interactive charts, smart insights, and a clean minimal interface.
+A premium, Apple-inspired personal finance dashboard built with React, TypeScript, and Vite. Designed with Figma-level visual precision featuring glassmorphism, fluid micro-animations, and a minimal aesthetic.
 
-## ✨ Features
+> Built as an internship project to demonstrate frontend engineering, UI/UX design systems, and modern web architecture.
 
-### Dashboard Overview
-- **Summary Cards** — Total Balance, Monthly Income, and Monthly Expenses with percentage change indicators
-- **Balance Trend Chart** — Area chart showing balance trend over time (Recharts)
-- **Spending Categories** — Interactive donut chart breaking down expenses by category
-- **Income vs Expenses** — Monthly bar chart comparing income and expense flows
+---
 
-### Transactions Management
-- **Full Transaction List** — View all transactions with date, amount, category, and type
-- **Search** — Real-time search across description, category, and amount
-- **Filters** — Filter by type (income/expense) and category (Food, Travel, Bills, etc.)
-- **Sortable Columns** — Click column headers (Date, Amount) to sort ascending/descending
-- **Add Transaction** — Modal form to add new transactions (Admin only)
-- **Edit Transaction** — Edit existing transactions via pre-filled modal (Admin only)
-- **Delete Transaction** — Delete with inline confirmation (Admin only)
-- **Pagination** — Shows 8 transactions with "View All" expansion
+## 🖼 Preview
 
-### Smart Insights
-- **Highest Spending Category** — Identifies your top expense category with percentage
-- **Budget Usage** — Alerts when expenses exceed 80% of income
-- **Savings Rate** — Calculates your savings percentage with contextual advice
-- **Net Flow** — Shows total transaction count and net cash flow
+| Overview | Activity | Insights | Settings |
+|----------|----------|----------|----------|
+| Summary cards, charts, and spending insights | Transaction log with search, filter & sort | Progress rings, sector allocation & category chart | Profile card & authorization toggle |
 
-### Role-Based UI (RBAC)
-- **Admin** — Can add, edit, and delete transactions; sees all action buttons
-- **Viewer** — Read-only view; add/edit/delete controls are hidden
-- Toggle between roles using the header toggle (desktop) or mobile controls
+---
 
-### Data Persistence
-- Transactions are automatically saved to `localStorage`
-- Data survives page refreshes and browser restarts
+## ✨ Key Features
+
+### 📊 Dashboard Overview
+- **Summary Cards** — Total Balance, Monthly Income & Expenses with trend indicators
+- **Balance Trend Chart** — Animated area chart tracking balance over time
+- **Category Spend Chart** — Visual breakdown of spending by category
+- **Income vs Expenses** — Monthly bar chart comparison
+
+### 📋 Activity & Transactions
+- **Searchable Transaction Table** — Real-time search across all fields
+- **Filter & Sort** — Filter by type/category, sort by date or amount
+- **Add / Edit / Delete** — Full CRUD operations (Admin role only)
+- **CSV Export** — One-click download of the complete financial dataset
+- **Internal Scrolling** — Sticky headers with contained scroll for large datasets
+
+### 🧠 Insights Engine
+- **Progress Rings** — Animated circular indicators for savings rate, capital usage, inflow ratio, and sector focus
+- **Sector Allocation** — Weighted expenditure breakdown with animated progress bars
+- **Category Spend Chart** — Visual chart of spending distribution
+
+### ⚙️ Settings
+- **Profile Card** — User identity display with Space Grotesk typography
+- **Authorization Toggle** — Switch between Admin and Viewer roles
+
+### 🔐 Role-Based Access (RBAC)
+- **Admin** — Full access: add, edit, delete transactions
+- **Viewer** — Read-only: all mutation controls are hidden
+- Toggle between roles via the Settings page or header controls
+
+### 💾 Data Persistence
+- Transactions auto-save to `localStorage`
+- Survives page refreshes and browser restarts
 - Graceful fallback to mock data if storage is corrupted
 
-### Export
-- **CSV Export** — Download all transactions as a CSV file with one click
+---
 
-### Empty States
-- Graceful handling when no transactions match filters
-- Contextual empty state messages throughout the app
+## 🎨 Design System
+
+| Token | Value |
+|-------|-------|
+| **Primary Font** | Inter (body), Outfit (headings) |
+| **Display Font** | Space Grotesk (names, identity) |
+| **Mono Font** | JetBrains Mono (numbers, amounts) |
+| **Background** | Apple Gray `#f5f5f7` |
+| **Surface** | Pure White with subtle borders |
+| **Border Radius** | 24px / 32px (squircle style) |
+| **Shadows** | Multi-layered natural shadows |
+| **Glass Effects** | `backdrop-blur` with saturated overlays |
+| **Animations** | Framer Motion with spring physics |
 
 ---
 
@@ -52,10 +73,11 @@ A modern personal finance dashboard built with React, TypeScript, and Vite. Trac
 | **React 19** | UI framework |
 | **TypeScript** | Type safety |
 | **Vite** | Build tool & dev server |
-| **Tailwind CSS 3** | Utility-first styling |
+| **Tailwind CSS** | Utility-first styling |
+| **Framer Motion** | Animations & transitions |
 | **Recharts** | Charts & data visualization |
-| **Lucide React** | Icon library |
-| **React Context** | State management |
+| **Lucide React** | Icon system |
+| **React Context** | Centralized state management |
 
 ---
 
@@ -69,8 +91,8 @@ A modern personal finance dashboard built with React, TypeScript, and Vite. Trac
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd "Finance Dashboard UI"
+git clone https://github.com/lokeshsattineni018-cmd/fintrust.git
+cd fintrust
 
 # Install dependencies
 npm install
@@ -96,34 +118,39 @@ npm run preview
 src/
 ├── components/
 │   ├── charts/
-│   │   ├── BalanceTrendChart.tsx    # Area chart for balance trend
-│   │   ├── CategorySpendChart.tsx   # Donut chart for spending categories
-│   │   └── IncomeExpenseChart.tsx   # Bar chart for income vs expenses
+│   │   ├── BalanceTrendChart.tsx       # Animated area chart
+│   │   ├── CategorySpendChart.tsx      # Category donut/bar chart
+│   │   └── IncomeExpenseChart.tsx      # Income vs expense bar chart
 │   ├── dashboard/
-│   │   ├── ChartsSection.tsx        # Charts layout wrapper
-│   │   ├── InsightsPanel.tsx        # Dynamic insights computed from data
-│   │   └── SummaryCards.tsx         # Balance, income, expense cards
+│   │   ├── ChartsSection.tsx           # Charts grid layout
+│   │   ├── InsightsPanel.tsx           # AI-style insights cards
+│   │   └── SummaryCards.tsx            # Balance, income, expense cards
 │   ├── layout/
-│   │   ├── AppLayout.tsx            # Main layout with sidebar + content
-│   │   ├── BottomNav.tsx            # Mobile bottom navigation
-│   │   ├── Header.tsx               # Top header with search + role toggle
-│   │   └── Sidebar.tsx              # Desktop sidebar navigation
+│   │   ├── AmbientBackground.tsx       # Subtle animated background
+│   │   ├── AppLayout.tsx               # Main layout (sidebar + content)
+│   │   ├── BottomNav.tsx               # Mobile bottom navigation
+│   │   ├── Header.tsx                  # Top header with search & controls
+│   │   └── Sidebar.tsx                 # Desktop sidebar with glassmorphism
 │   ├── shared/
-│   │   └── EmptyState.tsx           # Reusable empty state component
+│   │   └── EmptyState.tsx              # Reusable empty state component
 │   └── transactions/
-│       ├── TransactionModal.tsx      # Add/Edit transaction modal
-│       └── TransactionsTable.tsx     # Transaction list with search/filter/sort
+│       ├── TransactionModal.tsx         # Add/Edit transaction modal
+│       └── TransactionsTable.tsx        # Full-featured data table
 ├── context/
-│   └── DashboardContext.tsx          # Central state management
+│   └── DashboardContext.tsx             # Centralized state (CRUD, filters, role)
 ├── data/
-│   └── mockData.ts                  # Mock transactions and chart data helpers
+│   └── mockData.ts                     # Sample transaction data
 ├── lib/
-│   └── utils.ts                     # Utility functions (cn)
+│   ├── motion.ts                       # Framer Motion animation presets
+│   └── utils.ts                        # Utility functions
 ├── pages/
-│   └── Dashboard.tsx                # Main dashboard page
-├── App.tsx                          # App root with provider
-├── main.tsx                         # Entry point
-└── index.css                        # Global styles and Tailwind imports
+│   ├── Dashboard.tsx                   # Overview page
+│   ├── ActivityPage.tsx                # Transaction journal
+│   ├── InsightsPage.tsx                # Analytics & predictions
+│   └── SettingsPage.tsx                # Profile & authorization
+├── index.css                           # Design system tokens & global styles
+├── App.tsx                             # Root component
+└── main.tsx                            # Entry point
 ```
 
 ---
@@ -131,25 +158,21 @@ src/
 ## 🏗 Architecture Decisions
 
 ### State Management — React Context
-All application state is centralized in `DashboardContext`:
-- **Transaction CRUD** — add, edit, delete operations
-- **Filters & Search** — search query, type filter, category filter
-- **Sort** — field and direction
-- **Role** — admin/viewer toggle
-- **UI State** — sidebar open/close
+All state is centralized in `DashboardContext`: transaction CRUD, search, filters, sort, role toggle, and sidebar state. This avoids prop drilling while keeping the bundle lean.
 
-This approach avoids prop drilling while keeping the bundle small (no external state library needed for this scale).
+### Design Philosophy — "Less is More"
+Inspired by Apple's design language: generous whitespace, subtle shadows, restrained color palette, and typography-driven hierarchy. Every element serves a purpose.
 
-### Data Persistence — localStorage
-Transactions are automatically synced to `localStorage` on every mutation via a `useEffect` hook. On load, the app attempts to read from storage and falls back to mock data if parsing fails.
-
-### Role-Based Access Control
-RBAC is simulated on the frontend via a `role` state variable. Components conditionally render edit/delete buttons and the "Add Transaction" action based on the current role. This demonstrates the pattern without requiring backend authentication.
-
-### Responsive Design
-- **Desktop** (≥1024px): Sidebar navigation, wide data table, 3-column grid layouts
-- **Mobile** (<1024px): Bottom navigation bar, stacked card layouts, bottom-sheet modal
+### Responsive Strategy
+- **Desktop (≥1024px):** Sidebar navigation, wide data tables, multi-column grids
+- **Mobile (<1024px):** Bottom navigation bar, stacked cards, full-width layouts
 - All breakpoints handled via Tailwind responsive utilities
+
+### Performance
+- `useMemo` for expensive computations (stats, filtering, sorting)
+- `useCallback` for stable function references
+- Internal scrolling containers to prevent layout thrashing
+- Optimized Framer Motion with `will-change` hints
 
 ---
 
@@ -157,11 +180,23 @@ RBAC is simulated on the frontend via a `role` state variable. Components condit
 
 | Criteria | Implementation |
 |---|---|
-| **Design & Creativity** | Light minimal palette (soft indigo/emerald), rounded cards, smooth hover states, clean typography |
-| **Responsiveness** | Fully responsive with distinct mobile and desktop layouts |
-| **Functionality** | Dashboard, transactions CRUD, charts, filters, search, sort, export |
-| **User Experience** | Inline confirmations, filter chips, empty states, smooth transitions |
-| **Technical Quality** | TypeScript strict mode, component modularity, custom hooks, memoized computations |
-| **State Management** | React Context with centralized CRUD, filters, persistence |
-| **Documentation** | This README with architecture decisions, setup, and structure |
-| **Attention to Detail** | Empty states, localStorage fallback, truncated IDs, filter badge counts |
+| **Design & Creativity** | Apple-grade glassmorphism, Space Grotesk typography, squircle corners, multi-layered shadows |
+| **Responsiveness** | Fully responsive with distinct mobile/desktop layouts and navigation |
+| **Functionality** | Dashboard, transactions CRUD, charts, filters, search, sort, CSV export |
+| **User Experience** | Micro-animations, hover states, empty states, smooth page transitions |
+| **Technical Quality** | TypeScript strict mode, component modularity, memoized computations |
+| **State Management** | React Context with centralized CRUD, filters, localStorage persistence |
+| **Code Quality** | Zero lint errors, zero type errors, clean production build |
+| **Documentation** | This README with architecture decisions, setup instructions, and project structure |
+
+---
+
+## 📄 License
+
+This project was built as an internship submission. Feel free to reference for learning purposes.
+
+---
+
+<p align="center">
+  <strong>FinTrust</strong> — Designed with precision.
+</p>
