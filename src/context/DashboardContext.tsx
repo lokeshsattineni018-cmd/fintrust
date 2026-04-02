@@ -12,6 +12,7 @@ interface DashboardContextType {
   activePage: Page;
   setActivePage: (page: Page) => void;
   transactions: Transaction[];
+  filteredTransactions: Transaction[];
   addTransaction: (tx: Omit<Transaction, 'id'>) => void;
   editTransaction: (id: string, tx: Omit<Transaction, 'id'>) => void;
   deleteTransaction: (id: string) => void;
@@ -113,12 +114,22 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const filteredTransactions = transactions.filter(t => {
+    const q = searchQuery.toLowerCase();
+    const matchQuery = t.description.toLowerCase().includes(q) ||
+                       t.category.toLowerCase().includes(q);
+    const matchType = filterType === 'all' || t.type === filterType;
+    const matchCat = filterCategory === 'all' || t.category === filterCategory;
+    return matchQuery && matchType && matchCat;
+  });
+
   return (
     <DashboardContext.Provider
       value={{
         role, setRole,
         activePage, setActivePage,
         transactions, addTransaction, editTransaction, deleteTransaction,
+        filteredTransactions,
         isSidebarOpen, setIsSidebarOpen,
         searchQuery, setSearchQuery,
         filterType, setFilterType,

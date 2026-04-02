@@ -6,15 +6,15 @@ import { TransactionModal } from '../components/transactions/TransactionModal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeUp, staggerContainer, staggerItem } from '../lib/motion';
 export function ActivityPage() {
-  const { transactions, role } = useDashboard();
+  const { filteredTransactions, role } = useDashboard();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const totalIn = transactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
-  const totalOut = transactions.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
+  const totalIn = filteredTransactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+  const totalOut = filteredTransactions.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
 
   const exportCSV = () => {
     const headers = ['Date', 'Description', 'Category', 'Type', 'Amount'];
-    const rows = transactions.map(t => [t.date, `"${t.description}"`, t.category, t.type, t.amount.toString()]);
+    const rows = filteredTransactions.map(t => [t.date, `"${t.description}"`, t.category, t.type, t.amount.toString()]);
     const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -74,7 +74,7 @@ export function ActivityPage() {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
       >
         {[
-          { label: 'Event volume', value: transactions.length, valClass: 'text-zinc-900 dark:text-white', sub: 'Total records' },
+          { label: 'Event volume', value: filteredTransactions.length, valClass: 'text-zinc-900 dark:text-white', sub: 'Total records' },
           { label: 'Credits (In)', value: `₹${totalIn.toLocaleString('en-IN')}`, valClass: 'text-emerald-500', sub: 'Gross revenue' },
           { label: 'Debits (Out)', value: `-₹${totalOut.toLocaleString('en-IN')}`, valClass: 'text-rose-500', sub: 'Spending volume' },
           {

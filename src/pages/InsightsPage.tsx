@@ -62,7 +62,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export function InsightsPage() {
-  const { transactions } = useDashboard();
+  const { filteredTransactions: transactions } = useDashboard();
 
   const exportCSV = useCallback(() => {
     const headers = ['Date', 'Description', 'Category', 'Type', 'Amount'];

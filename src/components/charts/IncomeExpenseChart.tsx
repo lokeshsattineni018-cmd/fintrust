@@ -4,8 +4,8 @@ import { useDashboard } from '../../context/DashboardContext';
 import { motion } from 'framer-motion';
 
 export function IncomeExpenseChart() {
-  const { transactions, darkMode } = useDashboard();
-  const data = getIncomeVsExpense(transactions);
+  const { filteredTransactions, darkMode } = useDashboard();
+  const data = getIncomeVsExpense(filteredTransactions);
 
   const gridColor = darkMode ? '#2a2a2a' : '#F1F5F9';
   const tickColor = darkMode ? '#71717a' : '#64748B';

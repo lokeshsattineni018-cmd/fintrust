@@ -11,14 +11,14 @@ const cardStyles = [
 ];
 
 export function SummaryCards() {
-  const { transactions } = useDashboard();
+  const { filteredTransactions } = useDashboard();
 
   const stats = useMemo(() => {
-    const expenses = transactions.filter(t => t.type === 'expense').reduce((acc, t) => acc + t.amount, 0);
-    const income = transactions.filter(t => t.type === 'income').reduce((acc, t) => acc + t.amount, 0);
+    const expenses = filteredTransactions.filter(t => t.type === 'expense').reduce((acc, t) => acc + t.amount, 0);
+    const income = filteredTransactions.filter(t => t.type === 'income').reduce((acc, t) => acc + t.amount, 0);
     const balance = income - expenses;
     return { balance, income, expenses };
-  }, [transactions]);
+  }, [filteredTransactions]);
 
   const cards = [
     {

@@ -24,15 +24,15 @@ function SortHeaderIcon({
 }) {
   if (sortField !== field) return <div className="w-4 h-4" />;
   return sortDirection === 'asc' ? (
-    <ChevronUp className="w-4 h-4 text-zinc-900" />
+    <ChevronUp className="w-4 h-4 text-zinc-900 dark:text-white" />
   ) : (
-    <ChevronDown className="w-4 h-4 text-zinc-900" />
+    <ChevronDown className="w-4 h-4 text-zinc-900 dark:text-white" />
   );
 }
 
 export function TransactionsTable() {
   const {
-    transactions, role, deleteTransaction,
+    filteredTransactions, role, deleteTransaction,
     searchQuery, setSearchQuery,
     filterType, setFilterType,
     filterCategory, setFilterCategory,
@@ -41,16 +41,10 @@ export function TransactionsTable() {
 
   const [editingTx, setEditingTx] = useState<Transaction | null>(null);
 
-  const categories = useMemo(() => Array.from(new Set(transactions.map(t => t.category))), [transactions]);
+  const categories = useMemo(() => Array.from(new Set(filteredTransactions.map(t => t.category))), [filteredTransactions]);
 
-  const filtered = useMemo(() => {
-    return transactions.filter(t => {
-      const matchQuery = t.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         t.category.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchType = filterType === 'all' || t.type === filterType;
-      const matchCat = filterCategory === 'all' || t.category === filterCategory;
-      return matchQuery && matchType && matchCat;
-    }).sort((a, b) => {
+  const displayData = useMemo(() => {
+    return [...filteredTransactions].sort((a, b) => {
       const dir = sortDirection === 'asc' ? 1 : -1;
       if (sortField === 'date') return (new Date(a.date).getTime() - new Date(b.date).getTime()) * dir;
       if (sortField === 'amount') return (a.amount - b.amount) * dir;
@@ -58,9 +52,7 @@ export function TransactionsTable() {
       if (sortField === 'category') return a.category.localeCompare(b.category) * dir;
       return 0;
     });
-  }, [transactions, searchQuery, filterType, filterCategory, sortField, sortDirection]);
-
-  const displayData = filtered;
+  }, [filteredTransactions, sortField, sortDirection]);
 
   const clearFilters = () => {
     setSearchQuery('');
@@ -129,30 +121,30 @@ export function TransactionsTable() {
         </div>
 
         <div className="overflow-x-auto overflow-y-auto max-h-[65vh] relative custom-scrollbar">
-          {filtered.length === 0 ? (
+          {displayData.length === 0 ? (
             <div className="py-20"><EmptyState /></div>
           ) : (
             <table className="w-full min-w-[700px] text-left border-separate border-spacing-0">
               <thead>
                 <tr className="bg-zinc-50 dark:bg-zinc-900 text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold border-t border-zinc-200/60 dark:border-zinc-800">
-                  <th className="sticky top-0 z-20 bg-zinc-50 dark:bg-zinc-900 py-4 px-8 border-b border-zinc-200/50 group cursor-pointer hover:bg-zinc-100 transition-colors" onClick={() => toggleSort('description')}>
+                  <th className="sticky top-0 z-20 bg-zinc-50 dark:bg-zinc-900 py-4 px-8 border-b border-zinc-200/50 group cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" onClick={() => toggleSort('description')}>
                     <div className="flex items-center gap-2">
-                      Transaction Description
+                       Description
                       <SortHeaderIcon field="description" sortField={sortField} sortDirection={sortDirection} />
                     </div>
                   </th>
-                  <th className="sticky top-0 z-20 bg-zinc-50 dark:bg-zinc-900 py-4 px-8 border-b border-zinc-200/50 group cursor-pointer hover:bg-zinc-100 transition-colors" onClick={() => toggleSort('category')}>
+                  <th className="sticky top-0 z-20 bg-zinc-50 dark:bg-zinc-900 py-4 px-8 border-b border-zinc-200/50 group cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" onClick={() => toggleSort('category')}>
                     <div className="flex items-center gap-2">
                        Classification
                       <SortHeaderIcon field="category" sortField={sortField} sortDirection={sortDirection} />
                     </div>
                   </th>
-                  <th className="sticky top-0 z-20 bg-zinc-50 dark:bg-zinc-900 py-4 px-8 border-b border-zinc-200/50 group cursor-pointer hover:bg-zinc-100 transition-colors hidden sm:table-cell" onClick={() => toggleSort('date')}>
+                  <th className="sticky top-0 z-20 bg-zinc-50 dark:bg-zinc-900 py-4 px-8 border-b border-zinc-200/50 group cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors hidden sm:table-cell" onClick={() => toggleSort('date')}>
                     <div className="flex items-center gap-2">
                        Posting Date <SortHeaderIcon field="date" sortField={sortField} sortDirection={sortDirection} />
                     </div>
                   </th>
-                  <th className="sticky top-0 z-20 bg-zinc-50 dark:bg-zinc-900 py-4 px-8 border-b border-zinc-200/50 group cursor-pointer hover:bg-zinc-100 transition-colors text-right" onClick={() => toggleSort('amount')}>
+                  <th className="sticky top-0 z-20 bg-zinc-50 dark:bg-zinc-900 py-4 px-8 border-b border-zinc-200/50 group cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-right" onClick={() => toggleSort('amount')}>
                     <div className="flex items-center justify-end gap-2">
                        Net Value <SortHeaderIcon field="amount" sortField={sortField} sortDirection={sortDirection} />
                     </div>
@@ -197,12 +189,12 @@ export function TransactionsTable() {
                           {tx.date}
                         </td>
                         <td className={`py-5 px-8 border-b border-zinc-50 dark:border-zinc-800 text-right font-bold text-sm font-numeric tracking-tighter ${
-                          isIncome ? 'text-emerald-600' : 'text-zinc-900 text-base'
+                          isIncome ? 'text-emerald-600' : 'text-zinc-900 dark:text-white text-base'
                         }`}>
                           {isIncome ? '+' : '-'}₹{tx.amount.toLocaleString('en-IN')}
                         </td>
                         {role === 'admin' && (
-                          <td className="py-5 px-8 border-b border-zinc-50">
+                          <td className="py-5 px-8 border-b border-zinc-50 dark:border-zinc-800">
                             <div className="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                               <button 
                                 onClick={() => setEditingTx(tx)} 
