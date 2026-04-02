@@ -121,12 +121,12 @@ export function InsightsPage() {
     >
       <motion.div variants={fadeUp}>
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-zinc-100 rounded-full border border-zinc-200 shadow-sm animate-slide-up">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm animate-slide-up">
             <TrendingUp size={14} className="text-zinc-600" />
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">Heuristic Engine Active</span>
           </div>
-          <h1 className="text-5xl font-bold tracking-tight text-zinc-900 font-display leading-none">Intelligence.</h1>
-          <p className="text-zinc-500 mt-2 text-lg font-medium max-w-2xl leading-relaxed">
+          <h1 className="text-5xl font-bold tracking-tight text-zinc-900 dark:text-white font-display leading-none">Intelligence.</h1>
+          <p className="text-zinc-500 dark:text-zinc-400 mt-2 text-lg font-medium max-w-2xl leading-relaxed">
             Automated spending behavior mapping and predictive capital allocation insights.
           </p>
         </div>
@@ -135,11 +135,11 @@ export function InsightsPage() {
       {/* Main Analysis Hub — Apple style */}
       <motion.div variants={staggerItem} className="glass-card squircle-32 p-12 lg:p-16 relative overflow-hidden group">
         <div className="absolute top-0 right-0 p-16 opacity-5 group-hover:opacity-10 transition-opacity">
-          <Sparkles size={180} className="text-zinc-900" />
+          <Sparkles size={180} className="text-zinc-900 dark:text-white" />
         </div>
         <div className="relative z-10 flex flex-col gap-12">
             <div className="space-y-1">
-                <h3 className="font-display font-bold text-2xl text-zinc-900 tracking-tight">Audit Dashboard</h3>
+                <h3 className="font-display font-bold text-2xl text-zinc-900 dark:text-white tracking-tight">Audit Dashboard</h3>
                 <p className="text-zinc-500 text-sm font-semibold uppercase tracking-widest">Statistical performance indicators</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">

@@ -23,12 +23,12 @@ export function Dashboard() {
       {/* Mobile Actions - Figma style */}
       <motion.section className="flex flex-col gap-4 lg:hidden" variants={fadeUp}>
         <div className="flex items-center justify-between gap-3">
-          <div className="flex rounded-2xl border border-zinc-200 bg-white p-1 shadow-sm">
+          <div className="flex rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-1 shadow-sm">
             <button
               type="button"
               onClick={() => setRole('admin')}
               className={`rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all ${
-                role === 'admin' ? 'bg-zinc-900 text-white shadow-lg' : 'text-zinc-400'
+                role === 'admin' ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 shadow-lg' : 'text-zinc-400 dark:text-zinc-500'
               }`}
             >
               Admin
@@ -37,7 +37,7 @@ export function Dashboard() {
               type="button"
               onClick={() => setRole('viewer')}
               className={`rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all ${
-                role === 'viewer' ? 'bg-zinc-900 text-white shadow-lg' : 'text-zinc-400'
+                role === 'viewer' ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 shadow-lg' : 'text-zinc-400 dark:text-zinc-500'
               }`}
             >
               View
@@ -61,7 +61,7 @@ export function Dashboard() {
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Search records…"
-            className="w-full rounded-2xl border border-zinc-200 bg-white py-3.5 pl-11 pr-4 text-sm font-semibold text-zinc-900 shadow-sm focus:border-zinc-900 focus:outline-none focus:ring-4 focus:ring-zinc-900/5 transition-all placeholder:text-zinc-400"
+            className="w-full rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 py-3.5 pl-11 pr-4 text-sm font-semibold text-zinc-900 dark:text-white shadow-sm focus:border-zinc-900 dark:focus:border-zinc-600 focus:outline-none focus:ring-4 focus:ring-zinc-900/5 transition-all placeholder:text-zinc-400"
           />
         </div>
       </motion.section>

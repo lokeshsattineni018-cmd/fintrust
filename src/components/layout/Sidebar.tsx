@@ -33,21 +33,21 @@ export function Sidebar() {
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
            exit={{ opacity: 0 }}
-           className="lg:hidden fixed inset-0 z-40 bg-zinc-900/10 backdrop-blur-sm"
+           className="lg:hidden fixed inset-0 z-40 bg-zinc-900/10 dark:bg-black/30 backdrop-blur-sm"
            onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       <aside
-        className={`fixed left-0 top-0 z-50 flex h-[100dvh] w-[260px] flex-col border-r border-zinc-200/40 bg-[rgba(245,245,247,0.7)] backdrop-blur-3xl backdrop-saturate-150 transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${
+        className={`fixed left-0 top-0 z-50 flex h-[100dvh] w-[260px] flex-col border-r border-zinc-200/40 dark:border-zinc-800/40 bg-[rgba(245,245,247,0.7)] dark:bg-[rgba(10,10,10,0.8)] backdrop-blur-3xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         <div className="relative px-6 py-6 mt-2">
           <div className="flex items-center gap-3.5 mt-2">
-             <Hexagon className="text-zinc-900" size={24} strokeWidth={1.5} />
+             <Hexagon className="text-zinc-900 dark:text-white" size={24} strokeWidth={1.5} />
             <div className="min-w-0">
-              <p className="font-display text-[17px] font-bold tracking-tight text-zinc-900">FinTrust</p>
+              <p className="font-display text-[17px] font-bold tracking-tight text-zinc-900 dark:text-white">FinTrust</p>
             </div>
           </div>
         </div>
@@ -64,11 +64,11 @@ export function Sidebar() {
                 onClick={() => navigate(page)}
                 className={`group relative flex w-full items-center gap-3.5 rounded-full py-2.5 px-3.5 text-left text-[14px] transition-all duration-300 ${
                   isActive
-                    ? 'bg-zinc-200/60 font-semibold text-zinc-900'
-                    : 'text-zinc-500 hover:bg-zinc-200/30 hover:text-zinc-900 font-medium'
+                    ? 'bg-zinc-200/60 dark:bg-zinc-800/60 font-semibold text-zinc-900 dark:text-white'
+                    : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200/30 dark:hover:bg-zinc-800/30 hover:text-zinc-900 dark:hover:text-white font-medium'
                 }`}
               >
-                <Icon size={18} strokeWidth={1.5} className={isActive ? "text-zinc-900" : "text-zinc-400 group-hover:text-zinc-600"} />
+                <Icon size={18} strokeWidth={1.5} className={isActive ? "text-zinc-900 dark:text-white" : "text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300"} />
                 <span className="tracking-tight">{label}</span>
               </button>
             );
@@ -79,7 +79,7 @@ export function Sidebar() {
           {role === 'admin' && (
             <button
               onClick={() => navigate('activity')}
-              className="flex w-full items-center justify-center gap-2.5 rounded-full bg-zinc-900 py-3.5 text-[13px] font-medium text-white shadow-sm transition-all hover:bg-zinc-800"
+              className="flex w-full items-center justify-center gap-2.5 rounded-full bg-zinc-900 dark:bg-white py-3.5 text-[13px] font-medium text-white dark:text-zinc-900 shadow-sm transition-all hover:bg-zinc-800 dark:hover:bg-zinc-100"
             >
               <Plus size={16} strokeWidth={2} />
               New Entry
@@ -89,14 +89,14 @@ export function Sidebar() {
           <div className="space-y-1">
             <button
               type="button"
-              className="flex w-full items-center gap-3.5 rounded-full px-4 py-2.5 text-[13px] font-medium text-zinc-500 transition-all hover:bg-zinc-200/40 hover:text-zinc-900"
+              className="flex w-full items-center gap-3.5 rounded-full px-4 py-2.5 text-[13px] font-medium text-zinc-500 dark:text-zinc-400 transition-all hover:bg-zinc-200/40 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-white"
             >
               <HelpCircle size={18} strokeWidth={1.5} />
               Help Center
             </button>
             <button
               type="button"
-              className="flex w-full items-center gap-3.5 rounded-full px-4 py-2.5 text-[13px] font-medium text-zinc-500 transition-all hover:bg-red-50 hover:text-red-500"
+              className="flex w-full items-center gap-3.5 rounded-full px-4 py-2.5 text-[13px] font-medium text-zinc-500 dark:text-zinc-400 transition-all hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-500"
             >
               <LogOut size={18} strokeWidth={1.5} />
               Sign Out
@@ -105,8 +105,8 @@ export function Sidebar() {
           
           <div className="mt-8 flex items-center justify-between px-4">
              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-zinc-200/60 flex items-center justify-center text-[10px] font-bold text-zinc-600">AS</div>
-                <p className="text-sm text-zinc-900 tracking-[-0.02em] truncate" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}>Alex Sattineni</p>
+                <div className="w-8 h-8 rounded-full bg-zinc-200/60 dark:bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-zinc-600 dark:text-zinc-300">AS</div>
+                <p className="text-sm text-zinc-900 dark:text-white tracking-[-0.02em] truncate" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}>Alex Sattineni</p>
              </div>
           </div>
         </div>

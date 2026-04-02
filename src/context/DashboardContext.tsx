@@ -28,6 +28,8 @@ interface DashboardContextType {
   sortDirection: SortDirection;
   setSortDirection: (d: SortDirection) => void;
   toggleSort: (field: SortField) => void;
+  darkMode: boolean;
+  setDarkMode: (dark: boolean) => void;
 }
 
 const STORAGE_KEY = 'finance_dashboard_transactions';
@@ -65,6 +67,17 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   const [filterCategory, setFilterCategory] = useState('all');
   const [sortField, setSortField] = useState<SortField>('date');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      return localStorage.getItem('fintrust_dark_mode') === 'true';
+    } catch { return false; }
+  });
+
+  // Sync dark mode class on <html> element
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    try { localStorage.setItem('fintrust_dark_mode', String(darkMode)); } catch {}
+  }, [darkMode]);
 
   // Persist to localStorage on every change
   useEffect(() => {
@@ -113,6 +126,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         sortField, setSortField,
         sortDirection, setSortDirection,
         toggleSort,
+        darkMode, setDarkMode,
       }}
     >
       {children}

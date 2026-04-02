@@ -68,7 +68,7 @@ export function SummaryCards() {
                 <card.icon size={24} strokeWidth={1.5} />
               </div>
               <div className={`flex items-center gap-1 rounded-full px-3 py-1 font-numeric text-[11px] font-bold tracking-tight shadow-sm ${
-                card.isPositive ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'
+                card.isPositive ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600' : 'bg-red-50 dark:bg-red-500/10 text-red-600'
               }`}>
                 {card.isPositive ? <ArrowUpRight size={14} strokeWidth={2} /> : <ArrowDownRight size={14} strokeWidth={2} />}
                 {card.change}
@@ -77,13 +77,13 @@ export function SummaryCards() {
             
             <div className="space-y-2 mt-auto">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-400 transition-colors">{card.title}</h3>
-              <p className="font-numeric text-[44px] font-medium tracking-tighter text-zinc-900 tabular-nums font-display leading-none">
+              <p className="font-numeric text-[44px] font-medium tracking-tighter text-zinc-900 dark:text-white tabular-nums font-display leading-none">
                 ₹{Math.abs(card.amount).toLocaleString('en-IN')}
               </p>
             </div>
 
             <div className="mt-8 flex items-center gap-2">
-              <p className="text-sm font-medium text-zinc-500">{card.subtext}</p>
+              <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">{card.subtext}</p>
             </div>
           </motion.div>
         );
